@@ -1,7 +1,7 @@
 
 <?php
 /*
-* Template Name: Groak Business Profile Page    AIzaSyCNDrILVNLzWGASvtl8TzfVs-YW0p94Zn4
+* Template Name: Groak Business Profile Page
 */
 get_header();
 do_shortcode('geoip_detect2 property="country"');
