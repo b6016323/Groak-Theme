@@ -19,7 +19,12 @@ function groak__register_required_plugins() {
 			'name'      => 'Theme My Login',
 			'slug'      => 'theme-my-login',
 			'required'  => true,
-		)
+		),
+        array(
+            'name'      => 'GeoIP Detection',
+            'slug'      => 'geoip-detect',
+            'required'  => true,
+        )
 
 	);
 
@@ -124,4 +129,29 @@ function groak__register_required_plugins() {
 
 	tgmpa( $plugins, $config );
 }
+function groak__create_required_pages()
+{
+    //the theme requires a page called profile-page, heere we will check the page exists and if not, create it
+     $required_page_exists = get_page_by_title('Profile Page');
+        
+        $required_page = array(
+            'post_type' => 'page',
+            'post_title' => 'Profile Page',
+            'post_status' => 'publish'
+        );
+        $required_page_template = 'template-parts/gr_d_profile.php';
+        
+        if(!isset($required_page_exists->ID))
+        {
+            $created_page = wp_insert_post($required_page);
+            update_post_meta($created_page,'_wp_page_template',$required_page_template);        
+        }
+}
+function groak__set_defaults()
+{
+    //Dont allow comments by default
+    update_option('default_comment_status','closed');
+    echo "<h1 style='text-align:center;'>FIRED ON ACTIVATION</h1>";
+}
+add_action('after_switch_theme','groak__set_defaults');
 ?>

@@ -90,6 +90,20 @@ if ( ! function_exists( 'gr_d__setup' ) ) :
         require_once get_template_directory().'/inc/gr_d_profile_mgmt.php';
         require_once get_template_directory().'/theme-my-login/theme-my-login-custom.php';
         add_action( 'tgmpa_register', 'groak__register_required_plugins' );
+        
+        
+        // create a profile-page if it doesnt exist
+        //the theme requires a page called profile-page, heere we will check the page exists and if not, create it
+        add_action( 'tgmpa_register', 'groak__create_required_pages');
+
+        if(is_admin())
+        {
+            //get the admin page
+            require_once(get_template_directory().'/inc/admin/gr_admin.php');
+            groak_admin();
+        }
+        
+        
         /*
         *  END RYAN CUSTOM CODE
         */
