@@ -178,4 +178,23 @@ function groak__default_homepage()
     $page_content .= "</ul>";
     return $page_content;
 }
+
+function groak__user_roles()
+{
+    //Create a new user role
+    $result = add_role(
+    'business',
+    __('Business'),
+    array(
+        'read' => true,
+        'edit_posts' => true,
+        'create_posts' => true,
+        'publish_posts' => true,
+        'install_plugins' => false,
+        'edit_themes' => false,
+        'update_plugin' => false,
+        'update_core' => false
+    ));
+}
+add_action('after_switch_theme','groak__user_roles');
 ?>
