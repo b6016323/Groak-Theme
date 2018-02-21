@@ -146,12 +146,36 @@ function groak__create_required_pages()
             $created_page = wp_insert_post($required_page);
             update_post_meta($created_page,'_wp_page_template',$required_page_template);        
         }
+    $required_page_exists = get_page_by_title('Home Page');
+    $required_page = array(
+        'post_type' => 'page',
+        'post_title' => 'Home Page',
+        'post_status' => 'publish',
+        'post_content' => groak__default_homepage()
+    );
+    if(!isset($required_page_exists->ID))
+    {
+        $created_page = wp_insert_post($required_page);
+    }
 }
 function groak__set_defaults()
 {
     //Dont allow comments by default
     update_option('default_comment_status','closed');
-    echo "<h1 style='text-align:center;'>FIRED ON ACTIVATION</h1>";
+    $homepage = get_page_by_title('Home Page');
+    update_option('page_on_front',$homepage->ID);
+    update_option('show_on_front','page');
+    
 }
 add_action('after_switch_theme','groak__set_defaults');
+
+function groak__default_homepage()
+{
+    $page_content = "<ul>";
+    $page_content .= "<li><a href='register'>Register</a></li>";
+    $page_content .= "<li><a href='login'>Log in</a></li>";
+    $page_content .= "<li><a href=''>View Resturaunts</a></li>";
+    $page_content .= "</ul>";
+    return $page_content;
+}
 ?>
