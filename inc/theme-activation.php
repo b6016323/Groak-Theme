@@ -160,6 +160,11 @@ function groak__create_required_pages()
         update_post_meta($created_page,'_wp_page_template',$required_page_template); 
     }
 }
+function groak__create_required_posts()
+{
+    //This is the code we need for the pdf upload.  function doesnt do anything, isnt triggered.
+    //$post_contents = '[wordpress_file_upload uploadpath="%userid%" uploadrole="administrator,editor" uploadpatterns="*.pdf" createpath="true"]';
+}
 function groak__set_defaults()
 {
     //Dont allow comments by default
