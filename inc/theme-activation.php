@@ -153,9 +153,11 @@ function groak__create_required_pages()
         'post_status' => 'publish',
         'post_content' => groak__default_homepage()
     );
+    $required_page_template = 'template-parts/content-no-title.php';
     if(!isset($required_page_exists->ID))
     {
         $created_page = wp_insert_post($required_page);
+        update_post_meta($created_page,'_wp_page_template',$required_page_template); 
     }
 }
 function groak__set_defaults()
