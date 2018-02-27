@@ -5,7 +5,7 @@
  *
  * @package groak_dev
  */
-
+get_header();
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -43,3 +43,5 @@
 		</footer><!-- .entry-footer -->
 	<?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->
+<?php
+get_footer();

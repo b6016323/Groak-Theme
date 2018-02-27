@@ -88,6 +88,7 @@ if ( ! function_exists( 'gr_d__setup' ) ) :
         require_once get_template_directory().'/inc/theme-activation.php';
         require_once get_template_directory().'/inc/class-tgm-plugin-activation.php';
         require_once get_template_directory().'/inc/gr_d_profile_mgmt.php';
+        require_once get_template_directory().'/inc/gr_d_listings_mgmt.php';
         require_once get_template_directory().'/theme-my-login/theme-my-login-custom.php';
         add_action( 'tgmpa_register', 'groak__register_required_plugins' );
         
