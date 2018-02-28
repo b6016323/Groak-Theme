@@ -30,10 +30,17 @@ function groak_list_by()
         $the_search_query = new wp_user_query($searching_for);
         $found_users = $the_search_query->get_results();
     }
-    foreach($found_users as $user)
+    if(empty($found_users))
     {
-        $user_meta = get_user_meta($user->ID);
-        $content .= gr_user_wrapper(array('ID'=>$user->ID,'user_meta'=>$user_meta));
+        echo "<div class='groak_user_list_item'><span>There are no matches to your search</span></div>";
+    }
+    else
+    {
+        foreach($found_users as $user)
+        {
+            $user_meta = get_user_meta($user->ID);
+            $content .= gr_user_wrapper(array('ID'=>$user->ID,'user_meta'=>$user_meta));
+        }
     }
     $content .= "</div>";
     echo $content;
@@ -62,6 +69,7 @@ function gr_user_search_form()
     $content .= "<form role='search' method='get' class='searchform' action='$url'>";
     $content .= "<div><label for='s'>Search Businesses:</label>";
     $content .= "<input type='text' value='' name='gr_users' id='gr_users'>";
+    $content .= "<input type='submit' id='searchsubmit' value='Search' />";
     $content .= "</div>";
     $content .= "</form>";
     $content .= "</div>";
