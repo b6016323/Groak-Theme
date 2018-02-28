@@ -153,10 +153,17 @@ function groak__create_required_pages()
         'post_status' => 'publish',
         'post_content' => groak__default_homepage()
     );
+    $required_page_template = 'template-parts/content-no-title.php';
     if(!isset($required_page_exists->ID))
     {
         $created_page = wp_insert_post($required_page);
+        update_post_meta($created_page,'_wp_page_template',$required_page_template); 
     }
+}
+function groak__create_required_posts()
+{
+    //This is the code we need for the pdf upload.  function doesnt do anything, isnt triggered.
+    //$post_contents = '[wordpress_file_upload uploadpath="%userid%" uploadrole="administrator,editor" uploadpatterns="*.pdf" createpath="true"]';
 }
 function groak__set_defaults()
 {
@@ -178,4 +185,23 @@ function groak__default_homepage()
     $page_content .= "</ul>";
     return $page_content;
 }
+
+function groak__user_roles()
+{
+    //Create a new user role
+    $result = add_role(
+    'business',
+    __('Business'),
+    array(
+        'read' => true,
+        'edit_posts' => true,
+        'create_posts' => true,
+        'publish_posts' => true,
+        'install_plugins' => false,
+        'edit_themes' => false,
+        'update_plugin' => false,
+        'update_core' => false
+    ));
+}
+add_action('after_switch_theme','groak__user_roles');
 ?>

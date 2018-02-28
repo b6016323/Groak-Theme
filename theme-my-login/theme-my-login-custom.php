@@ -84,6 +84,8 @@ function tml_business_registration($userid)
     {
         update_user_meta($userid,'business_number',$_POST['business_number']);
     }
+    $user = get_user_by('ID',$userid);
+    $user->add_role('business');
 }
 add_action('user_register','tml_business_registration');
 ?>
