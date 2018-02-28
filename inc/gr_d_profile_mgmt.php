@@ -137,7 +137,7 @@ function gr_get_contact_details($bID)
     $businessmeta = get_user_meta($bID);
     if($businessmeta['business_name'][0] != "" | $businessmeta['business_postcode'][0] != "")
     {
-        $content = '<div class="groak_business_profile_address">'.$businessmeta['business_name'][0].',<br>'.$businessmeta['business_address'][0].',<br>'.$businessmeta['business_postcode'][0].',<br>'.$businessmeta['business_country'][0].'</div>';
+        $content = '<div class="groak_business_profile_address">'.$businessmeta['business_name'][0].',<br>'.$businessmeta['business_address'][0].',<br><span class="groak_postcode">'.$businessmeta['business_postcode'][0].'</span>,<br>'.$businessmeta['business_country'][0].'</div>';
         $content .= '<div class="groak_business_profile_contact"><a href="tel:'.$businessmeta['business_number'][0].'">'.$businessmeta['business_number'][0].'</a></div>';
     }
     return $content;
