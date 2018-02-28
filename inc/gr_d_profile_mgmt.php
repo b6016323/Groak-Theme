@@ -6,17 +6,22 @@
  */
 function gr_d_rewrite_tag()
 {
+    //used in profile pages
     add_rewrite_tag('%business%','([^/]+)','business=');
     add_rewrite_tag('%gr_action%','([^/]+)','gr_action=');
+    add_rewrite_tag('%gr_users%','([^/]+)','gr_users=');
 }
 add_action('init','gr_d_rewrite_tag');
 function gr_d_rewrite_rule()
 {
+    //used in profile pages
 	//regex testing https://regex101.com/r/pEwAKt/1
     add_rewrite_rule('b/([^/]*)/?$','index.php?pagename=profile-page&business=$matches[1]','top');
     add_rewrite_rule('b/([^/]*)/viewmenu/?$','index.php?pagename=profile-page&business=$matches[1]&gr_action=menu','top');
     add_rewrite_rule('b/([^/]*)/contact/?$','index.php?pagename=profile-page&business=$matches[1]&gr_action=contact','top');
+    
     flush_rewrite_rules();
+    
 }
 add_action('init','gr_d_rewrite_rule');
 function gr_d_flush_rules()
@@ -28,6 +33,7 @@ function gr_d_filter_try($args)
 {
     $args[] = "business";
     $args[] = "gr_action";
+    $args[] = "gr_users";
     return $args;
 }
 add_filter('query_vars','gr_d_filter_try');
@@ -137,7 +143,7 @@ function gr_get_contact_details($bID)
     $businessmeta = get_user_meta($bID);
     if($businessmeta['business_name'][0] != "" | $businessmeta['business_postcode'][0] != "")
     {
-        $content = '<div class="groak_business_profile_address">'.$businessmeta['business_name'][0].',<br>'.$businessmeta['business_address'][0].',<br>'.$businessmeta['business_postcode'][0].',<br>'.$businessmeta['business_country'][0].'</div>';
+        $content = '<div class="groak_business_profile_address">'.$businessmeta['business_name'][0].',<br>'.$businessmeta['business_address'][0].',<br><span class="groak_postcode">'.$businessmeta['business_postcode'][0].'</span>,<br>'.$businessmeta['business_country'][0].'</div>';
         $content .= '<div class="groak_business_profile_contact"><a href="tel:'.$businessmeta['business_number'][0].'">'.$businessmeta['business_number'][0].'</a></div>';
     }
     return $content;
