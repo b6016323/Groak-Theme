@@ -1,7 +1,6 @@
 <?php
 /**
  * Template part for displaying page content in page.php, with no header
- * Template Name: No Title Page
  *
  * @package groak_dev
  */
@@ -19,7 +18,6 @@ get_header();
 			) );
 		?>
 	</div><!-- .entry-content -->
-
 	<?php if ( get_edit_post_link() ) : ?>
 		<footer class="entry-footer">
 			<?php
@@ -43,5 +41,5 @@ get_header();
 		</footer><!-- .entry-footer -->
 	<?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->
-<?php
-get_footer();
+
+
