@@ -6,17 +6,22 @@
  */
 function gr_d_rewrite_tag()
 {
+    //used in profile pages
     add_rewrite_tag('%business%','([^/]+)','business=');
     add_rewrite_tag('%gr_action%','([^/]+)','gr_action=');
+    add_rewrite_tag('%gr_users%','([^/]+)','gr_users=');
 }
 add_action('init','gr_d_rewrite_tag');
 function gr_d_rewrite_rule()
 {
+    //used in profile pages
 	//regex testing https://regex101.com/r/pEwAKt/1
     add_rewrite_rule('b/([^/]*)/?$','index.php?pagename=profile-page&business=$matches[1]','top');
     add_rewrite_rule('b/([^/]*)/viewmenu/?$','index.php?pagename=profile-page&business=$matches[1]&gr_action=menu','top');
     add_rewrite_rule('b/([^/]*)/contact/?$','index.php?pagename=profile-page&business=$matches[1]&gr_action=contact','top');
+    
     flush_rewrite_rules();
+    
 }
 add_action('init','gr_d_rewrite_rule');
 function gr_d_flush_rules()
@@ -28,6 +33,7 @@ function gr_d_filter_try($args)
 {
     $args[] = "business";
     $args[] = "gr_action";
+    $args[] = "gr_users";
     return $args;
 }
 add_filter('query_vars','gr_d_filter_try');
