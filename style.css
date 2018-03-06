@@ -325,6 +325,7 @@ big {
 --------------------------------------------------------------*/
 html {
 	box-sizing: border-box;
+	
 }
 
 *,
@@ -504,9 +505,16 @@ a:hover, a:active {
 --------------------------------------------------------------*/
 .main-navigation {
 	clear: both;
-	display: block;
+	/*display: block;*/
 	float: left;
-	width: 100%;
+	width: 99%;
+	background-color: #bf202f;
+	margin-left: 10px;
+	margin-right: 100px;
+	border-style: solid;
+	border-radius: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .main-navigation ul {
@@ -514,6 +522,8 @@ a:hover, a:active {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+	font-weight: bold; 
+	
 }
 
 .main-navigation ul ul {
@@ -523,6 +533,7 @@ a:hover, a:active {
 	top: 100%;
 	left: -999em;
 	z-index: 99999;
+	
 }
 
 .main-navigation ul ul ul {
@@ -533,10 +544,14 @@ a:hover, a:active {
 .main-navigation ul ul li:hover > ul,
 .main-navigation ul ul li.focus > ul {
 	left: 100%;
+	background-color: #f58e75;
+	
 }
+
 
 .main-navigation ul ul a {
 	width: 200px;
+	
 }
 
 .main-navigation ul li:hover > ul,
@@ -547,22 +562,41 @@ a:hover, a:active {
 .main-navigation li {
 	float: left;
 	position: relative;
+	margin-left: 5px;
+}
+
+.main-navigation li:hover{
+	background-color: #f58e75;
 }
 
 .main-navigation a {
 	display: block;
 	text-decoration: none;
+	color: black;
 }
 
 /* Small menu. */
 .menu-toggle,
 .main-navigation.toggled ul {
 	display: block;
+	
+}
+.menu-toggle{
+	background-color: #eee;
+	color: #444;
+	cursor: pointer;
+	padding: 18px;
+	width: 50%;
+	text-align: left;
+	border: none;
+	outline: none;
+	transition: 0.4s;
 }
 
 @media screen and (min-width: 37.5em) {
 	.menu-toggle {
 		display: none;
+		
 	}
 	.main-navigation ul {
 		display: block;
@@ -701,6 +735,30 @@ a:hover, a:active {
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
+.content-area{
+	margin-left: 5px;
+	margin-right: 10px;
+	border-radius: 3px;
+	padding-left: 10px;
+	float: right;
+	width: 78%;
+}
+
+.widget-area{
+	width: 20%;
+	margin-left: 10px;
+	margin-top: 10px;
+	border-radius: 3px;
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: orange;
+	float: left;
+}
+
+
+
+
 /*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/
@@ -764,6 +822,72 @@ a:hover, a:active {
 	margin-top: 0;
 	padding: 0;
 }
+/*--------------------------------------------------------------
+Groak Profile
+---------------------------------------------------------------*/
+.groak_business_profile h2{
+	font-size: 30px;
+	text-align: left;	
+}
+.groak_business_profile_nav{
+	text-align: center;
+	background-color: #bf202f;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding-top: 20px;
+	border-style: solid;
+		
+}
+.groak_business_profile_nav li{
+	list-style-type: none;
+	/*background-color: #f15a35;*/
+	/*margin-left: 150px;
+	margin-right: 170px;*/
+	display: inline;
+	font-weight: bold;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 27px;
+	padding-bottom: 28px;
+	/*border-style: solid;
+	border-width: 2px;*/
+	
+}
+.groak_business_profile_nav li:hover{
+	background-color: #f58e75;
+}
+.groak_business_profile a{
+	color:#222222;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+/*----------------------------------------------------
+Header
+------------------------------------------------------*/
+.site-title{
+	margin-left: 10px;
+}
+
+.site-description{
+	text-align: right;
+	margin-right: 15px;
+}
+
+.menu{
+	margin-left: 20px;
+}
+
+/*----------------------------------------------------
+Footer
+------------------------------------------------------*/
+.site-footer{
+		background-color: black;
+		color: grey;
+		margin-top: 15px;
+		padding-top: 5px;
+		min-height: 100%;
+}
 
 /* Make sure embeds and iframes fit their containers. */
 embed,
@@ -776,6 +900,8 @@ object {
 .custom-logo-link {
 	display: inline-block;
 }
+
+
 
 /*--------------------------------------------------------------
 ## Captions
