@@ -381,7 +381,7 @@ dd {
 img {
 	height: auto;
 	/* Make sure images are scaled correctly. */
-	max-width: 10%;
+	max-width: 100%;
 	/* Adhere to container width. */
 }
 
@@ -571,11 +571,14 @@ a:hover, a:active {
 	float: left;
 	position: relative;
 	margin-left: 15px;
+	padding: 2px;
+	border-radius: 2px;
 	
 }
 
 .main-navigation li:hover{
 	background-color: #545454;
+	transition: all 200ms ease-in-out;
 }
 
 .main-navigation a {
@@ -588,18 +591,46 @@ a:hover, a:active {
 .menu-toggle,
 .main-navigation.toggled ul {
 	display: block;
+	margin-top: 5px;
 	
 }
+
+.main-navigation.toggled li:hover,
+.main-navigation.toggled li:active{
+	background-color: #f15a35;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-radius: 2px;
+}
+
 .menu-toggle{
-	background-color: #eee;
-	color: #444;
-	cursor: pointer;
-	padding: 18px;
-	width: 50%;
+	height: 30px;
+	background-color: black;
+	cursor: hand;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 27px;
+	margin-bottom: 6px;
+	width: 55px;
 	text-align: left;
-	border: none;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #3f3f3f;
+	border-radius: 3px;
 	outline: none;
 	transition: 0.4s;
+	
+}
+
+.menu-toggle-burger{
+	width: 20px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+	margin-left: 7px;
+	border-radius: 2px;
+	
+	
 }
 
 @media screen and (min-width: 480px) {
@@ -607,6 +638,7 @@ a:hover, a:active {
 		display: none;
 		
 	}
+	
 	.main-navigation ul {
 		display: block;
 	}
@@ -748,9 +780,6 @@ a:hover, a:active {
 	margin-left: 5px;
 	margin-right: 10px;
 	border-radius: 3px;
-	padding-left: 10px;
-	float: right;
-	width: 78%;
 }
 
 .entry-content li{
@@ -853,11 +882,14 @@ Groak Profile
 	border-color: #bf202f;
 		
 }
+.groak_business_profile_nav ul{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
 .groak_business_profile_nav li{
 	list-style-type: none;
-	/*background-color: #f15a35;*/
-	/*margin-left: 150px;
-	margin-right: 170px;*/
 	display: inline;
 	margin-left: 10px;
 	font-weight: bold;
@@ -872,28 +904,67 @@ Groak Profile
 }
 .groak_business_profile_nav li:hover{
 	background-color: #ff8c0a;
+	transition: all 400ms ease-in-out;
 }
 .groak_business_profile a{
 	color:#222222;
 	text-decoration: none;
 	font-size: 20px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 27px;
+	padding-bottom: 28px;
 }
 
 .groak_business_profile h1{
 	margin-left: 15px;
 }
+/*----------------------------------------------------
+Groak User List
+------------------------------------------------------*/
+.groak_user_list {
+    display: flex;
+    flex-direction: column;
+    width:60%;
+	margin: 10px;
+	box-shadow: 0 0 0 2px rgba(255, 140, 10, 0.0);
+    transition: all 200ms ease-in-out;
+}
+
+.groak_user_list:hover {
+	box-shadow: 0 0 0 2px rgba(255, 140, 10, 0.8);
+   
+}
+
+.groak_user_list span{
+	margin-left: 7px;
+}
+
 
 /*----------------------------------------------------
 Header
 ------------------------------------------------------*/
-.site-title{
+.site-branding{
+	background-color: #bf202f;
+}
+
+.site-title a{
 	margin-left: 10px;
-	
+	font-weight: bold;
+	text-decoration: none;
+	color:#222222;
+	font-style: italic;
 }
 
 .site-description{
 	text-align: right;
 	margin-right: 15px;
+}
+
+.site-logo {
+	max-width: 20%;
+	margin-left: 40%;
+	
 }
 
 .menu{
@@ -908,7 +979,9 @@ Footer
 		color: grey;
 		margin-top: 15px;
 		padding-top: 5px;
-		min-height: 100%;
+		bottom:0;
+		position: fixed;
+		width: 100%;
 }
 
 /* Make sure embeds and iframes fit their containers. */
@@ -1005,36 +1078,8 @@ object {
 	width: 30px;
 	height: 30px;
 }
-.groak_business_profile
-{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.groak_business_profile_nav ul{
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-}
-.groak_business_profile_nav li
-{
-    display: inline;
-    margin: 1px 4px;
-}
-.groak_business_profile_nav a {
-    color:black;
-    text-decoration: none;
-    padding:5px 10px;
-    background-color: #f15a35;
-}
-.groak_user_list {
-    display: flex;
-    flex-direction: column;
 
-    width:60%;
 
-}
 .groak_user_list_item {
     display: flex;
     flex-direction: row;
