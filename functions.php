@@ -210,7 +210,7 @@ function gr_d_shortcode_menu($args)
         echo $args['menu'];
     }
     wp_nav_menu( array(
-					'menu_id'        => $args['menu']
+					'menu'        => $args['menu']
     ));
 }
 add_shortcode('gr_menu','gr_d_shortcode_menu');
