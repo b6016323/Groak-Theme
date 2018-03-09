@@ -49,6 +49,7 @@ html {
 
 body {
 	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 article,
@@ -109,6 +110,10 @@ dfn {
 h1 {
 	font-size: 2em;
 	margin: 0.67em 0;
+}
+
+li{
+	list-style-type: none;
 }
 
 mark {
@@ -484,9 +489,9 @@ a {
 	color: royalblue;
 }
 
-a:visited {
+/*a:visited {
 	color: purple;
-}
+}*/
 
 a:hover, a:focus, a:active {
 	color: midnightblue;
@@ -503,18 +508,15 @@ a:hover, a:active {
 /*--------------------------------------------------------------
 ## Menus
 --------------------------------------------------------------*/
+.active {
+  background-color: #ff8c0a;
+  color: white;
+}
+
 .main-navigation {
 	clear: both;
 	/*display: block;*/
 	float: left;
-	width: 99%;
-	background-color: #bf202f;
-	margin-left: 10px;
-	margin-right: 100px;
-	border-style: solid;
-	border-radius: 10px;
-	padding-top: 5px;
-	padding-bottom: 5px;
 }
 
 .main-navigation ul {
@@ -522,7 +524,6 @@ a:hover, a:active {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
-	font-weight: bold; 
 	
 }
 
@@ -562,42 +563,39 @@ a:hover, a:active {
 .main-navigation li {
 	float: left;
 	position: relative;
-	margin-left: 5px;
-}
 
-.main-navigation li:hover{
-	background-color: #f58e75;
 }
 
 .main-navigation a {
 	display: block;
 	text-decoration: none;
-	color: black;
+
 }
 
 /* Small menu. */
 .menu-toggle,
 .main-navigation.toggled ul {
 	display: block;
-	
-}
-.menu-toggle{
-	background-color: #eee;
-	color: #444;
-	cursor: pointer;
-	padding: 18px;
-	width: 50%;
-	text-align: left;
-	border: none;
-	outline: none;
-	transition: 0.4s;
+
 }
 
-@media screen and (min-width: 37.5em) {
+.menu-toggle-burger{
+	width: 20px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+	margin-left: 7px;
+	border-radius: 2px;
+	
+	
+}
+
+@media screen and (min-width: 480px) {
 	.menu-toggle {
 		display: none;
 		
 	}
+	
 	.main-navigation ul {
 		display: block;
 	}
@@ -702,7 +700,7 @@ a:hover, a:active {
 .comment-content:after,
 .site-header:before,
 .site-header:after,
-.site-content:before,
+.content:before,
 .site-content:after,
 .site-footer:before,
 .site-footer:after {
@@ -739,9 +737,7 @@ a:hover, a:active {
 	margin-left: 5px;
 	margin-right: 10px;
 	border-radius: 3px;
-	padding-left: 10px;
-	float: right;
-	width: 78%;
+
 }
 
 .widget-area{
@@ -754,6 +750,7 @@ a:hover, a:active {
 	padding-bottom: 10px;
 	background-color: orange;
 	float: left;
+
 }
 
 
@@ -831,48 +828,37 @@ Groak Profile
 }
 .groak_business_profile_nav{
 	text-align: center;
-	background-color: #bf202f;
+
 	margin-left: 20px;
 	margin-right: 20px;
 	padding-top: 20px;
 	border-style: solid;
-		
-}
-.groak_business_profile_nav li{
-	list-style-type: none;
-	/*background-color: #f15a35;*/
-	/*margin-left: 150px;
-	margin-right: 170px;*/
-	display: inline;
+
 	font-weight: bold;
 	padding-left: 3px;
 	padding-right: 3px;
 	padding-top: 27px;
 	padding-bottom: 28px;
+
 	/*border-style: solid;
 	border-width: 2px;*/
 	
 }
 .groak_business_profile_nav li:hover{
-	background-color: #f58e75;
+
 }
 .groak_business_profile a{
 	color:#222222;
 	text-decoration: none;
 	font-size: 20px;
-}
 
-/*----------------------------------------------------
-Header
-------------------------------------------------------*/
-.site-title{
-	margin-left: 10px;
 }
 
 .site-description{
 	text-align: right;
 	margin-right: 15px;
 }
+
 
 .menu{
 	margin-left: 20px;
@@ -886,12 +872,13 @@ Footer
 		color: grey;
 		margin-top: 15px;
 		padding-top: 5px;
-		min-height: 100%;
+
 }
 
 /* Make sure embeds and iframes fit their containers. */
 embed,
 iframe,
+object {
 object {
 	max-width: 100%;
 }
@@ -978,38 +965,7 @@ object {
 ## Theme Changes
 --------------------------------------------------------------*/
 .site-logo {
-    max-height: 100px;
-}
-.groak_business_profile
-{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.groak_business_profile_nav ul{
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-}
-.groak_business_profile_nav li
-{
-    display: inline;
-    margin: 1px 4px;
-}
-.groak_business_profile_nav a {
-    color:black;
-    text-decoration: none;
-    padding:5px 10px;
-    background-color: #f15a35;
-}
-.groak_user_list {
-    display: flex;
-    flex-direction: column;
 
-    width:60%;
-
-}
 .groak_user_list_item {
     display: flex;
     flex-direction: row;
