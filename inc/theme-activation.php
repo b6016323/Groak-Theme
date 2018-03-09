@@ -131,31 +131,55 @@ function groak__register_required_plugins() {
 }
 function groak__create_required_pages()
 {
-    //the theme requires a page called profile-page, heere we will check the page exists and if not, create it
-     $required_page_exists = get_page_by_title('Profile Page');
-        
-        $required_page = array(
-            'post_type' => 'page',
-            'post_title' => 'Profile Page',
-            'post_status' => 'publish'
-        );
-        $required_page_template = 'template-parts/gr_d_profile.php';
-        
-        if(!isset($required_page_exists->ID))
-        {
-            $created_page = wp_insert_post($required_page);
-            update_post_meta($created_page,'_wp_page_template',$required_page_template);        
-        }
-    $required_page_exists = get_page_by_title('Home Page');
-    $required_page = array(
+    //We want to create multiple pages, so lets start with an array
+    $required_pages = array();
+    
+    //creating the pages
+    $required_pages[] = array(
+        //array for the post for WP
+        'post_details'=>array(
+        'post_type' => 'page',
+        'post_title' => 'Profile Page',
+        'post_status' => 'publish'),
+        //item for page template
+        'page_template'=> 'template_parts/gr_d_profile.php'
+    );
+    $required_pages[] = array(
+        'post_details'=> array(
         'post_type' => 'page',
         'post_title' => 'Home Page',
         'post_status' => 'publish',
-        'post_content' => groak__default_homepage()
+        'post_content' => groak__default_homepage()),
+        'page_template' => 'page-no-title.php'
     );
-    if(!isset($required_page_exists->ID))
+    $required_pages[] = array(
+        'post_details'=> array(
+        'post_type' => 'page',
+        'post_title' => 'About',
+        'post_status' => 'publish'),
+        'page_template' => ''
+        );
+    $required_pages[] = array(
+        'post_details'=> array(
+        'post_type' => 'page',
+        'post_title' => 'Privacy Policy',
+        'post_status' => 'publish'),
+        'page_template' => ''
+        );
+    //Now check if the pages exist, if they dont then we create them
+    
+    foreach($required_pages as $required_page)
     {
-        $created_page = wp_insert_post($required_page);
+        if(!isset(get_page_by_title($required_page['post_details']['post_title'])->ID))
+        {
+            $created_page = wp_insert_post($required_page['post_details']);
+            update_post_meta($created_page,'_wp_page_template',$required_page['page_template']);
+            if($required_page['post_details']['post_title'] == 'Home Page')
+            {
+                //update_option('page_on_front',$created_page);
+                update_option('show_on_front','page');
+            }
+        }
     }
 }
 function groak__set_defaults()
@@ -169,13 +193,29 @@ function groak__set_defaults()
 }
 add_action('after_switch_theme','groak__set_defaults');
 
+
 function groak__default_homepage()
 {
-    $page_content = "<ul>";
-    $page_content .= "<li><a href='register'>Register</a></li>";
-    $page_content .= "<li><a href='login'>Log in</a></li>";
-    $page_content .= "<li><a href=''>View Resturaunts</a></li>";
-    $page_content .= "</ul>";
+    //$page_content = '[gr_menu menu="testing"]';
     return $page_content;
 }
+
+function groak__user_roles()
+{
+    //Create a new user role
+    $result = add_role(
+    'business',
+    __('Business'),
+    array(
+        'read' => true,
+        'edit_posts' => true,
+        'create_posts' => true,
+        'publish_posts' => true,
+        'install_plugins' => false,
+        'edit_themes' => false,
+        'update_plugin' => false,
+        'update_core' => false
+    ));
+}
+add_action('after_switch_theme','groak__user_roles');
 ?>

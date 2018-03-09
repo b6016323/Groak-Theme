@@ -74,8 +74,8 @@ if ( ! function_exists( 'gr_d__setup' ) ) :
 		 * @link https://codex.wordpress.org/Theme_Logo
 		 */
 		add_theme_support( 'custom-logo', array(
-			'height'      => 250,
-			'width'       => 250,
+			'height'      => 50,
+			'width'       => 50,
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
@@ -88,6 +88,7 @@ if ( ! function_exists( 'gr_d__setup' ) ) :
         require_once get_template_directory().'/inc/theme-activation.php';
         require_once get_template_directory().'/inc/class-tgm-plugin-activation.php';
         require_once get_template_directory().'/inc/gr_d_profile_mgmt.php';
+        require_once get_template_directory().'/inc/gr_d_listings_mgmt.php';
         require_once get_template_directory().'/theme-my-login/theme-my-login-custom.php';
         add_action( 'tgmpa_register', 'groak__register_required_plugins' );
         
@@ -157,6 +158,21 @@ function gr_d__scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'gr_d__scripts' );
 
+
+function gr_d__set_default_menus()
+{
+    //lets register some menus
+    register_nav_menus(array(
+            'Home_Menu'=>__('Home Menu')
+    ));
+}
+add_action('after_setup_theme','gr_d__set_default_menus');
+
+function gr_d__menu_options()
+{
+    //set the menu items
+    
+}
 /**
  * Implement the Custom Header feature.
  */
@@ -184,3 +200,17 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+
+//shortcode for menus in pages
+function gr_d_shortcode_menu($args)
+{
+    if($args['menu'])
+    {
+        echo $args['menu'];
+    }
+    wp_nav_menu( array(
+					'menu'        => $args['menu']
+    ));
+}
+add_shortcode('gr_menu','gr_d_shortcode_menu');
