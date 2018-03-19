@@ -782,27 +782,8 @@ a:hover, a:active {
 	border-radius: 3px;
 }
 
-.entry-content{
-	display: flex;
-	justify-content: center;
-	text-align: center;
-}
-
 .entry-content li{
 	list-style-type: none;
-	margin-top: 3px;
-	padding: 2px;
-}
-
-.entry-content a:link{
-	font-weight: bold;
-	color: #222222;
-	text-decoration: none;
-	padding: 5px 10px;
-	width:100%;
-	display:block;
-	border-radius: 5px;
-	background-color: pink;
 }
 
 .widget-area{
