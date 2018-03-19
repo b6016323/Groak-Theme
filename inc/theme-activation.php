@@ -196,7 +196,7 @@ add_action('after_switch_theme','groak__set_defaults');
 
 function groak__default_homepage()
 {
-    //$page_content = '[gr_menu menu="testing"]';
+    $page_content = '[gr_menu menu="testing"]';
     return $page_content;
 }
 
