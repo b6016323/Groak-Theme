@@ -24,8 +24,12 @@ function groak__register_required_plugins() {
             'name'      => 'GeoIP Detection',
             'slug'      => 'geoip-detect',
             'required'  => true,
-        )
-
+        ),
+		array(
+			'name'		=> 'Wordpress File Upload',
+			'slug'		=> 'wordpress-theme-upload',
+			'required'	=> true,
+			)
 	);
 
 	/*
