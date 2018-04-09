@@ -26,8 +26,8 @@ function groak__register_required_plugins() {
             'required'  => true,
         ),
 		array(
-			'name'		=> 'Wordpress File Upload',
-			'slug'		=> 'wordpress-theme-upload',
+			'name'		=> 'WordPress File Upload',
+			'slug'		=> 'wp-file-upload',
 			'required'	=> true,
 			)
 	);
