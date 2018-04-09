@@ -26,10 +26,15 @@ function groak__register_required_plugins() {
             'required'  => true,
         ),
 		array(
-			'name'		=> 'WordPress File Upload',
+			'name'		=> 'Wordpress File Upload',
 			'slug'		=> 'wp-file-upload',
 			'required'	=> true,
-			)
+			),
+        array(
+            'name'      => 'PDF Embedder',
+            'slug'      => 'pdf-embedder',
+            'required'  => 'true',
+        )
 	);
 
 	/*

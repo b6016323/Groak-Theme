@@ -10,7 +10,7 @@ Theme My Login will always look in your theme's directory first, before using th
 	<form id="your-profile" action="<?php $template->the_action_url( 'profile', 'login_post' ); ?>" method="post">
 	<?php 
 	/*	Need to add business details section	*/
-	echo do_shortcode("[wordpress_file_upload]");
+	echo do_shortcode('[wordpress_file_upload uploadpath="%userid%" uploadrole="administrator,editor" uploadpatterns="*.pdf" createpath="true"]');
 	?>
 		<?php wp_nonce_field( 'update-user_' . $current_user->ID ); ?>
 

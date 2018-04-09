@@ -85,7 +85,7 @@ function gr_get_profile_content($bID)
             $content .= gr_get_profile_map($bID);
             break;
         case "menu":
-            $content .= gr_get_food_menu();
+            $content .= gr_get_food_menu($bID);
             break;
         case "contact":
             $content .= gr_get_contact_details($bID);
@@ -130,10 +130,21 @@ function gr_get_profile_map($bID)
     $content .= '</div>';
     return $content;
 }
-function gr_get_food_menu()
+function gr_get_food_menu($bID)
 {
-    $content = "<div class='gorak_business_profile_food_menu'>";
-    $content .= "<h2>Food Menu Coming Soon";
+    $upload_directory = wp_upload_dir();
+    $b = get_user_by('id',$bID);
+    $menu_location = $upload_directory['basedir']."/".$b->user_login."/menu.pdf";
+    $menu_url = $upload_directory['baseurl']."/".$b->user_login."/menu.pdf";
+    $content = "<div class='groak_business_profile_food_menu'>";
+    if(file_exists($menu_location))
+    {
+        $content .= do_shortcode("[pdf-embedder url=$menu_url]");
+    }
+    else
+    {
+        $content .= "<h2>Food Menu Coming Soon</h2>";
+    }
     $content .= "</div>";
     return $content;
 }
@@ -147,4 +158,25 @@ function gr_get_contact_details($bID)
         $content .= '<div class="groak_business_profile_contact"><a href="tel:'.$businessmeta['business_number'][0].'">'.$businessmeta['business_number'][0].'</a></div>';
     }
     return $content;
+}
+
+//Thank you https://www.iptanus.com/custom-upload-path-for-wordpress-file-upload-plugin/
+if (!function_exists('wfu_before_file_upload_handler')) {
+    function wfu_before_file_upload_handler($file_path, $file_unique_id) {
+      //get the current user
+      $user = wp_get_current_user();
+      if ( $user->ID != 0 ) {
+        //extract filename from $file_path
+        $filename = wfu_basename($file_path);
+        //get upload dir structure
+        $upload_dir = wp_upload_dir();
+        //construct new upload dir from upload base dir and the username of the current user
+        $new_file_dir = $upload_dir['basedir'].'/'.$user->user_login;
+        //create the new file dir, if it is does not exist
+        if ( !is_dir($new_file_dir) ) mkdir($new_file_dir, 0777, true);
+        //return the new file path
+        return $new_file_dir.'/menu.pdf';
+      }
+    }
+    add_filter('wfu_before_file_upload', 'wfu_before_file_upload_handler', 10, 2);
 }
