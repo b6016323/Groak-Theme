@@ -1007,7 +1007,7 @@ Footer
 /* Make sure embeds and iframes fit their containers. */
 embed,
 iframe,
-object {
+object 
 object {
 	max-width: 100%;
 }
@@ -1117,4 +1117,24 @@ object {
 }
 .groak_postcode {
     text-transform: uppercase;
+}
+.reviews_block {
+    display: flex;
+    flex-direction: row;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-around;
+}
+.review_block {
+
+}
+.numOf {
+    padding:5px 10px;
+    background-color: #bf202f;
+    color:white;
+}
+.theReview {
+    background-color: #bf202f4d;
+    padding: 5px;
 }

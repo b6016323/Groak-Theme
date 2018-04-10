@@ -160,6 +160,100 @@ function gr_get_contact_details($bID)
     return $content;
 }
 
+function gr_get_comments()
+{
+    $businessid = get_query_var('business');
+    $args = array(
+        'meta_query'    =>  array(
+            'key'   => 'business_comment',
+            'value' => $businessid
+        )
+    );
+    $comment_query = new WP_comment_query;
+    $reviews = $comment_query->query($args);
+    $review_contents = array();
+    foreach($reviews as $review)
+    {
+        $review_split = explode(",",$review->comment_content);
+        foreach($review_split as $rev)
+        {
+            $rev = trim($rev);
+            if(array_key_exists($rev,$review_contents) && $rev != "")
+            {
+                $review_contents[$rev] += 1;
+            }
+            else
+            {
+                if($rev != "")
+                {
+                    $review_contents[$rev] = 1;
+                }
+            }
+        }
+    }
+    $content = "<div class='reviews_block'>";
+    
+    //http://php.net/manual/en/function.key.php    I messed up the structure nof the array so i have to use this, i just want to finish this
+    while($rev = current($review_contents))
+    {
+        $content .= "<div class='review_block'><span class='numOf'>".$rev."</span><span class='theReview'>".key($review_contents)."</span></div>";
+        next($review_contents);
+    }
+    $content .= "</div>";
+    return $content;
+}
+
+function gr_comment_section()
+{
+    $businessid = get_query_var('business');
+    $reviews = array(
+        "The food is great",
+        "Excellent service",
+        "A hidden gem"
+    );
+    $new_comment_field = "<p class='comment-form-comment'>";
+    $new_comment_field .= "<input type='hidden' name='bid' value='$businessid'>";
+    $new_comment_field .= "<input type='hidden' name='comment' value='".time()."'>";
+    foreach($reviews as $review)
+    {
+        $new_comment_field .= "<input type='checkbox' value='$review' name='comments[]' id='$review'><label for='$review'>$review</label><br>";
+    }
+    $new_comment_field .= "</p>";
+    
+    $new_logged_in_as = "";
+    $new_title_reply = "Leave a review";
+    
+    $new_defaults = array(
+        'comment_field' => $new_comment_field,
+        'logged_in_as' => $new_logged_in_as,
+        'title_reply' => $new_title_reply,
+        'label_submit' => "Leave a review"
+    );
+    comment_form($new_defaults);
+}
+function gr_fix_comment_content($commentdata)
+{
+    $comment_content = "";
+    foreach($_POST['comments'] as $review)
+    {
+        $comment_content .= $review.",";
+    }
+    $commentdata['comment_content'] = $comment_content;
+    return $commentdata;
+}
+add_filter('preprocess_comment','gr_fix_comment_content');
+
+function gr_custom_comment_meta($comment_id)
+{
+    add_comment_meta($comment_id, 'business_comment',$_POST['bid']);
+}
+add_action('comment_post','gr_custom_comment_meta');
+
+function gr_comment_redirect_fix($location)
+{
+    return $_SERVER["HTTP_REFERER"];
+}
+add_filter('comment_post_redirect','gr_comment_redirect_fix');
 //Thank you https://www.iptanus.com/custom-upload-path-for-wordpress-file-upload-plugin/
 if (!function_exists('wfu_before_file_upload_handler')) {
     function wfu_before_file_upload_handler($file_path, $file_unique_id) {

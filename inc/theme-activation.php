@@ -151,7 +151,8 @@ function groak__create_required_pages()
         'post_title' => 'Profile Page',
         'post_status' => 'publish'),
         //item for page template
-        'page_template'=> 'template_parts/gr_d_profile.php'
+        'page_template'=> 'template_parts/gr_d_profile.php',
+        'comment_status'=>true
     );
     $required_pages[] = array(
         'post_details'=> array(
