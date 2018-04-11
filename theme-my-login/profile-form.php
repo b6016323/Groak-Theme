@@ -141,7 +141,7 @@ Theme My Login will always look in your theme's directory first, before using th
 			<td><textarea name="description" id="description" rows="5" cols="30"><?php echo esc_html( $profileuser->description ); ?></textarea><br />
 			<span class="description"><?php _e( 'Share a little biographical information to fill out your profile. This may be shown publicly.', 'theme-my-login' ); ?></span></td>
 		</tr>
-
+            
 		<?php
 		$show_password_fields = apply_filters( 'show_password_fields', true, $profileuser );
 		if ( $show_password_fields ) :

@@ -52,7 +52,10 @@ Custom theme template
 			<label for="business_number<?php $template->the_instance(); ?>"><?php _e( 'Contact Number', 'theme-my-login' ); ?></label>
 			<input type="text" name="business_number" id="business_number<?php $template->the_instance(); ?>" class="input" value="<?php $template->the_posted_value( 'business_number' ); ?>" size="20" />
 		</p>
-        
+        <p class="tml-business-tags">
+			<label for="business_tags<?php $template->the_instance(); ?>"><?php _e( 'Tags, seperated by comma', 'theme-my-login' ); ?></label>
+			<input type="text" name="business_tags" id="business_tags<?php $template->the_instance(); ?>" class="input" value="<?php $template->the_posted_value( 'business_tags' ); ?>" size="120" />
+		</p>
 		<p class="tml-submit-wrap">
 			<input type="submit" name="wp-submit" id="wp-submit<?php $template->the_instance(); ?>" value="<?php esc_attr_e( 'Register', 'theme-my-login' ); ?>" />
 			<input type="hidden" name="redirect_to" value="<?php $template->the_redirect_url( 'register' ); ?>" />

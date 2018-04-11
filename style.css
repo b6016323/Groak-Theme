@@ -1124,6 +1124,7 @@ object {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 .review_block {
@@ -1137,4 +1138,22 @@ object {
 .theReview {
     background-color: #bf202f4d;
     padding: 5px;
+}
+.gr_business_tag {
+    padding: 5px 10px;
+    background-color: #bf202f4d;
+    /**color: black;**/
+}
+.groak_business_profile_tags {
+    max-width: 800px;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.entry-content {
+    display: flex;
+    flex-direction: column;
 }

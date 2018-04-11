@@ -10,6 +10,7 @@ function gr_d_rewrite_tag()
     add_rewrite_tag('%business%','([^/]+)','business=');
     add_rewrite_tag('%gr_action%','([^/]+)','gr_action=');
     add_rewrite_tag('%gr_users%','([^/]+)','gr_users=');
+    add_rewrite_tag('%gr_tags%','([^/]+)','gr_tags=');
 }
 add_action('init','gr_d_rewrite_tag');
 function gr_d_rewrite_rule()
@@ -34,6 +35,7 @@ function gr_d_filter_try($args)
     $args[] = "business";
     $args[] = "gr_action";
     $args[] = "gr_users";
+    $args[] = "gr_tags";
     return $args;
 }
 add_filter('query_vars','gr_d_filter_try');
@@ -101,7 +103,21 @@ function gr_get_profile_information($bID)
 {
     $business = get_user_by('id',$bID);
     $businessmeta = get_user_meta($bID);
-    $content = '<div class="groak_business_profile_about">'.$businessmeta['description'][0].'</div>';
+    $url = home_url($wp->request)."/list-users?gr_tags=";
+    $content = '<div class="groak_business_profile_tags">';
+    $business_tags = $businessmeta['business_tags'][0];
+    $tags = explode(",",$business_tags);
+    foreach($tags as $tag)
+    {
+        $tag = trim($tag);
+        if(!$tag == "")
+        {
+            $content .= "<span class='gr_business_tag'><a href='$url$tag'>$tag</a></span>";
+        }
+    }
+    
+    $content .= '</div>';
+    $content .= '<div class="groak_business_profile_about">'.$businessmeta['description'][0].'</div>';
     return $content;
 }
 function gr_get_profile_events()
