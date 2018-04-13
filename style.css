@@ -486,7 +486,7 @@ textarea {
 ## Links
 --------------------------------------------------------------*/
 a {
-	color: royalblue;
+	color: #000000;
 }
 
 /*a:visited {
@@ -590,7 +590,9 @@ a:hover, a:active {
 /* Small menu. */
 .menu-toggle,
 .main-navigation.toggled ul {
-	display: block;
+    display: flex;
+	text-align: left;
+    flex-direction: column;
 	margin-top: 5px;
 	
 }
@@ -780,6 +782,7 @@ a:hover, a:active {
 	margin-left: 5px;
 	margin-right: 10px;
 	border-radius: 3px;
+	text-align: center;
 }
 
 .entry-content{
@@ -794,17 +797,31 @@ a:hover, a:active {
 	padding: 2px;
 }
 
-.entry-content a:link{
+#menu-menu-1 a:link{
 	font-weight: bold;
 	color: #222222;
 	text-decoration: none;
 	padding: 5px 10px;
+	border-radius: 5px;	
 	width:100%;
 	display:block;
-	border-radius: 5px;
-	background-color: pink;
+	background-color: white;
+  	border-radius: 9px;
+	border-style: solid;
+	border-width: 0.5px;/**/
+	transition: all 200ms ease-in-out;
 }
 
+
+#menu-menu-1 a:hover{
+	background: #f15b35;
+ 	background-image: -webkit-linear-gradient(top, #f15b35, #cf4e2d);
+  	background-image: -moz-linear-gradient(top, #f15b35, #cf4e2d);
+  	background-image: -ms-linear-gradient(top, #f15b35, #cf4e2d);
+  	background-image: -o-linear-gradient(top, #f15b35, #cf4e2d);
+  	background-image: linear-gradient(to bottom, #f15b35, #cf4e2d);
+  	text-decoration: none;
+}
 .widget-area{
 	width: 20%;
 	margin-left: 10px;
@@ -889,7 +906,10 @@ Groak Profile
 ---------------------------------------------------------------*/
 .groak_business_profile h2{
 	font-size: 30px;
-	text-align: left;	
+}
+
+.groak_business_profile{
+	text-align: center;	
 }
 .groak_business_profile_nav{
 	text-align: center;
@@ -903,8 +923,10 @@ Groak Profile
 }
 .groak_business_profile_nav ul{
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 0px;
+	padding-left: 0px;
+	/*margin-left: auto;
+	margin-right: auto;*/
 	
 }
 .groak_business_profile_nav li{
@@ -922,7 +944,8 @@ Groak Profile
 	
 }
 .groak_business_profile_nav li:hover{
-	background-color: #ff8c0a;
+	background-color: #f15a35;
+	/*background-color: #ff8c0a;*/
 	transition: all 400ms ease-in-out;
 }
 .groak_business_profile a{
@@ -938,14 +961,27 @@ Groak Profile
 .groak_business_profile h1{
 	margin-left: 15px;
 }
+
+.gr_profile_content{
+	text-align:center;
+	margin-top: 20px;
+}
 /*----------------------------------------------------
 Groak User List
 ------------------------------------------------------*/
+.groak_search_users{
+	overflow: auto;
+	height: 55px;
+	position: absolute;
+}
+
 .groak_user_list_item  {
+	position: static;
     display: flex;
+	text-align: center;
     flex-direction: column;
     width:60%;
-	margin: 10px;
+	margin-top: 50px;
 	box-shadow: 0 0 0 2px rgba(255, 140, 10, 0.0);
     transition: all 200ms ease-in-out;
 }
@@ -955,8 +991,27 @@ Groak User List
    
 }
 
+.groak_user_list_item a{
+	color: blue;
+}
+
 .groak_user_list span{
+	margin: 4px 5px;
+}
+.groak_user_list {
+	text-align: center;
 	margin-left: 7px;
+}
+
+@media screen and (min-width: 480px) {
+	.groak_user_list{
+		width: auto;
+	}
+	.groak_user_list_item{
+		width: 120px;
+		text-align: center;
+		margin-top: 50px;
+	}
 }
 
 
@@ -982,9 +1037,20 @@ Header
 }
 
 .site-logo {
-	max-width: 20%;
-	margin-left: 40%;
+	max-width: 15%;
+	display: block;
+   	margin-left: auto;
+    margin-right: 43%;
 	
+}
+
+@media screen and (min-width: 480px) {
+	.site-logo{
+		max-width: 8%;
+		display: block;
+   		margin-left: auto;
+    	margin-right: 47%;
+	}
 }
 
 .menu{
@@ -1093,21 +1159,9 @@ object {
 /*--------------------------------------------------------------
 ## Theme Changes
 --------------------------------------------------------------*/
-.site-logo {
-
-	width: 30px;
-	height: 30px;
-}
 
 
-.groak_user_list_item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 10px;
-        padding: 7px 14px;
-    background-color: #f15a35;
-}
+
 #menu-home-page-menu
 {
     padding:0px;
@@ -1124,7 +1178,7 @@ object {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    flex-wrap: wrap;
+
     justify-content: space-around;
 }
 .review_block {
@@ -1138,22 +1192,5 @@ object {
 .theReview {
     background-color: #bf202f4d;
     padding: 5px;
-}
-.gr_business_tag {
-    padding: 5px 10px;
-    background-color: #bf202f4d;
-    /**color: black;**/
-}
-.groak_business_profile_tags {
-    max-width: 800px;
-    display: flex;
-    flex-direction: row;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-.entry-content {
-    display: flex;
-    flex-direction: column;
+
 }
