@@ -1178,6 +1178,7 @@ object {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+
     justify-content: space-around;
 }
 .review_block {
@@ -1191,4 +1192,5 @@ object {
 .theReview {
     background-color: #bf202f4d;
     padding: 5px;
+
 }

@@ -37,6 +37,10 @@ function tml_registration_errors($errors)
     {
         $errors->add( 'empty_number', '<strong>ERROR</strong>: Please enter a contact number.' );
     }
+    if(empty($_POST['business_tags']))
+    {
+        $errors->add( 'empty_number', '<strong>ERROR</strong>: Please enter at least one tag.' );
+    }
 	return $errors;
 }
 add_filter('registration_errors','tml_registration_errors');
@@ -84,8 +88,37 @@ function tml_business_registration($userid)
     {
         update_user_meta($userid,'business_number',$_POST['business_number']);
     }
+    if(!empty($_POST['business_tags']))
+    {
+        $btags = $_POST['business_tags'];
+    }
+    else
+    {
+        $btags = "";
+        $btags = "None Added";
+    }
+    update_user_meta($userid,'business_tags',$btags);
     $user = get_user_by('ID',$userid);
     $user->add_role('business');
 }
 add_action('user_register','tml_business_registration');
+
+function tml_edit_business_profile($profileuser)
+{
+    ?>
+        <p class="tml-business-tags">
+			<label for="business_tags"><?php _e( 'Tags, seperated by comma', 'theme-my-login' ); ?></label>
+            <input type="text" name="business_tags" id="business_tags" class="regular-text" value="<?php echo esc_attr( $profileuser->business_tags ); ?>" size="120" />
+		</p>
+<?php
+}
+add_action('edit_user_profile','tml_edit_business_profile');
+add_action('show_user_profile','tml_edit_business_profile');
+
+function tml_save_business_updates($profileuser)
+{
+    update_user_meta($profileuser,'business_tags',$_POST['business_tags']);
+}
+add_action('personal_options_update','tml_save_business_updates');
+add_action('edit_user_profile_update','tml_save_business_updates');
 ?>

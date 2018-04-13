@@ -24,8 +24,17 @@ function groak__register_required_plugins() {
             'name'      => 'GeoIP Detection',
             'slug'      => 'geoip-detect',
             'required'  => true,
+        ),
+		array(
+			'name'		=> 'Wordpress File Upload',
+			'slug'		=> 'wp-file-upload',
+			'required'	=> true,
+			),
+        array(
+            'name'      => 'PDF Embedder',
+            'slug'      => 'pdf-embedder',
+            'required'  => 'true',
         )
-
 	);
 
 	/*
@@ -142,7 +151,8 @@ function groak__create_required_pages()
         'post_title' => 'Profile Page',
         'post_status' => 'publish'),
         //item for page template
-        'page_template'=> 'template_parts/gr_d_profile.php'
+        'page_template'=> 'template_parts/gr_d_profile.php',
+        'comment_status'=>true
     );
     $required_pages[] = array(
         'post_details'=> array(
@@ -196,7 +206,7 @@ add_action('after_switch_theme','groak__set_defaults');
 
 function groak__default_homepage()
 {
-    //$page_content = '[gr_menu menu="testing"]';
+    $page_content = '[gr_menu menu="testing"]';
     return $page_content;
 }
 

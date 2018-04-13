@@ -17,6 +17,8 @@ $businessmeta = get_user_meta($businessid);
     <h1><?php echo $businessmeta['business_name'][0]; ?></h1>
     <?php echo gr_get_profile_menu($businessid);?>
     <?php echo gr_get_profile_content($businessid);?>
+    <?php echo gr_get_comments();?>
+    <?php echo gr_comment_section();?>
 </div>
 <?php
 get_footer();
