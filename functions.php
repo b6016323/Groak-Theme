@@ -205,10 +205,6 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 //shortcode for menus in pages
 function gr_d_shortcode_menu($args)
 {
-    if($args['menu'])
-    {
-        echo $args['menu'];
-    }
     wp_nav_menu( array(
 					'menu'        => $args['menu']
     ));
