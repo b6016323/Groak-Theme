@@ -9,10 +9,8 @@ License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: gr_d_
 Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
-
 groak_dev is based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc.
 Underscores is distributed under the terms of the GNU GPL v2 or later.
-
 Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 */
@@ -823,6 +821,7 @@ a:hover, a:active {
   	text-decoration: none;
 }
 .widget-area{
+	display: none;
 	width: 20%;
 	margin-left: 10px;
 	margin-top: 10px;
